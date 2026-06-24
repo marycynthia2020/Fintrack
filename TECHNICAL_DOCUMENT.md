@@ -150,13 +150,14 @@ Important columns:
 
 | Column | Type | Notes |
 | --- | --- | --- |
-| id | bigint / uuid | Primary key |
+| id | uuid | Primary key |
 | name | string | User's name |
 | email | string | Unique login email |
 | password | string | Hashed password |
 | organization_id | string | uuid |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
+| metadata | json | additional information | 
 
 ### Organisations Table
 
@@ -171,6 +172,7 @@ Important columns:
 | owner_id | foreign id | First user / organisation owner |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
+| metadata | json | additional information | 
 
 ### Organisation User Table
 
@@ -188,6 +190,7 @@ Important columns:
 | joined_at | timestamp nullable | When user joined |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
+| metadata | json | additional information | 
 
 
 ### Accounts Table
@@ -204,6 +207,7 @@ Important columns:
 | balance | decimal | Confirmed account balance |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
+| metadata | json | additional information | 
 
 
 ### Income Table
@@ -214,7 +218,7 @@ Important columns:
 
 | Column | Type | Notes |
 | --- | --- | --- |
-| id | bigint / uuid | Primary key |
+| id | uuid | Primary key |
 | organisation_id | foreign id | Tenant owner |
 | amount | decimal | Income amount |
 | description | text nullable | Description |
@@ -222,6 +226,7 @@ Important columns:
 | updated_by | foreign id | User who created record |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
+| metadata | json | additional information | 
 
 ### Expenses Table
 
@@ -239,6 +244,7 @@ Important columns:
 | updated_by | foreign id | User who created record |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
+| metadata | json | additional information | 
 
 ### Ledger Table
 
@@ -250,22 +256,22 @@ Important columns:
 | --- | --- | --- |
 | id | uuid | Primary key |
 | organisation_id | foreign id | Tenant owner |
-| model_type | string | Source model class, for example Income or Expense |
-| model_id | uuid | Source model id |
+| ledgerable_type | string | Source model type (Income, Expense) |
+| ledgerable_id | uuid | Source model identifier |
 | amount | decimal | Transaction amount |
-| amount_before | decimal | Balance before transaction |
-| amount_after | decimal | Balance after transaction |
-| tx_type | string | credit, debit, reversal, adjustment |
+| even_type | string | created, updated, deleted |
 | description | text nullable | Human-readable note |
 | created_by | foreign id | User who caused ledger entry |
 | created_at | timestamp | Time transaction was recorded |
+| processed-at | timestamp | Time of processing | 
+| metadata | json | additional information | 
 
 Recommended constraints:
 
 - Ledger rows should not have `updated_at` unless there is a strong reason.
 - Application code should prevent ledger updates and deletes.
 - Database permissions or triggers can be considered later for stronger immutability.
-- `model_type` and `model_id` should be indexed together.
+- `ledgerable_type and `ledgerable_id` should be indexed together.
 
 ## Financial Transaction Rules
 
