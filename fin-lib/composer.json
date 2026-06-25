@@ -11,5 +11,15 @@
     "minimum-stability": "stable",
     "require": {
         "php": "^8.2"
-    }
+    },
+    "authors":[
+        {
+            "name": "Rapha Panchi",
+            "email": "raphapanchi@gmail.com"
+        },
+        {
+            "name": "Chinemerem Ugbaja",
+            "email": "chinemeremugbaja97@gmail.com"
+        }
+    ],
 }
