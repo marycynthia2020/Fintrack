@@ -169,10 +169,9 @@ Important columns:
 | --- | --- | --- |
 | id | uuid | Primary key |
 | name | string | Organisation name |
-| owner_id | foreign id | First user / organisation owner |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
-| metadata | json | additional information | 
+| metadata | json | additional information | eg:the owner_id:uuid
 
 ### Organisation User Table
 
@@ -222,6 +221,7 @@ Important columns:
 | organisation_id | foreign id | Tenant owner |
 | amount | decimal | Income amount |
 | description | text nullable | Description |
+| type | string | type of icome eg. salary  |
 | created_by | foreign id | User who created record |
 | updated_by | foreign id | User who created record |
 | created_at | timestamp | Laravel default |
@@ -240,6 +240,7 @@ Important columns:
 | organisation_id | foreign id | Tenant owner |
 | amount | decimal | Expense amount |
 | description | text nullable | Description |
+| type | string | type of expenses eg. school fees  |
 | created_by | foreign id | User who created record |
 | updated_by | foreign id | User who created record |
 | created_at | timestamp | Laravel default |
@@ -263,8 +264,27 @@ Important columns:
 | description | text nullable | Human-readable note |
 | created_by | foreign id | User who caused ledger entry |
 | created_at | timestamp | Time transaction was recorded |
-| processed-at | timestamp | Time of processing | 
+| processed_at | timestamp | Time of processing | 
 | metadata | json | additional information | 
+
+
+### Audit_logs Table
+
+Purpose: stores all the activities that happened in the app.
+
+Important columns:
+
+| Column | Type | Notes |
+| --- | --- | --- |
+| id | uuid | Primary key |
+| organisation_id | foreign id | Tenant owner |
+| even_type | string | income created, income deleted |
+| created_at | timestamp | Time transaction was recorded |
+| updated_at | timestamp | Time of update | 
+| metadata | json | additional information | 
+
+morphs relatonship
+
 
 Recommended constraints:
 
@@ -368,3 +388,5 @@ Deliverable: mobile users can manage income and expenses using the backend API.
 - Add filtering by date, type, and user.
 
 Deliverable: organisation data is properly protected, and users can view useful financial summaries.
+
+
