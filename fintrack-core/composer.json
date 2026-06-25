@@ -1,0 +1,15 @@
+{
+    "name": "fintrack/core",
+    "description": "Core module for fintrack portal",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "FinTrack\\Core\\": "src/"
+        }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.2"
+    }
+}
