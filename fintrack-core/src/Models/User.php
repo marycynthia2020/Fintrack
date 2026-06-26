@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use FinTrack\Core\Traits\HasOrganization;
 
 #[Fillable(['name', 'email', 'password', 'organization_id'])]
@@ -17,7 +18,7 @@ use FinTrack\Core\Traits\HasOrganization;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasOrganization, SoftDeletes, HasUuids;
+    use HasFactory, Notifiable, HasOrganization, SoftDeletes, HasUuids, HasApiTokens;
 
     protected $primaryKey = 'id';
     protected $keyType = 'string';
