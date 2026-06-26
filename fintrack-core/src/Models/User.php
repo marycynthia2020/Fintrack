@@ -1,28 +1,28 @@
 <?php
+
 namespace FinTrack\Core\Models;
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use FinTrack\Core\Traits\HasOrganization;
 
-#[Fillable(['name', 'email', 'password','organization_id',
-        'created_at',
-        'updated_at',
-        'deleted_at'])]
+#[Fillable(['name', 'email', 'password', 'organization_id'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasOrganisation, SoftDelete, HaUuid;
+    use HasFactory, Notifiable, HasOrganization, SoftDeletes, HasUuids;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
     protected function casts(): array
     {
         return [

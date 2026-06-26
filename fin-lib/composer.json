@@ -10,9 +10,13 @@
     },
     "minimum-stability": "stable",
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "illuminate/support": "^11.0|^12.0",
+        "illuminate/database": "^11.0|^12.0",
+        "illuminate/filesystem": "^11.0|^12.0",
+        "illuminate/http": "^11.0|^12.0"
     },
-    "authors":[
+    "authors": [
         {
             "name": "Rapha Panchi",
             "email": "raphapanchi@gmail.com"
@@ -22,4 +26,14 @@
             "email": "chinemeremugbaja97@gmail.com"
         }
     ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FinTrack\\FinLib\\Providers\\FinLibServiceProvider"
+            ],
+            "aliases": {
+                "FinLib": "FinTrack\\FinLib\\Facades\\FinLib"
+            }
+        }
+    }
 }
