@@ -2,14 +2,11 @@
 
 namespace FinTrack\Core\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use FinTrack\Core\Models\BaseModel;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class Attachment extends Model
+class Attachment extends BaseModel
 {
-    use SoftDeletes, HasUuids;
 
     protected $primaryKey = 'id';
     protected $keyType = 'string';

@@ -11,10 +11,10 @@ class Core
     {
         return Organization::find($id);
     }
-
+    
     public function currency(): string
     {
-        return Config::get('fintrack-core.default_currency', 'USD');
+        return Config::get('fintrack-core.default_currency', 'NGN');
     }
 
     public function timezone(): string

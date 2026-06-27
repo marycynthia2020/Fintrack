@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8d2abf929b44703e980f444310e7605f",
+    "content-hash": "6d669308e39c8039c8de9df11f9596c1",
     "packages": [
         {
             "name": "brick/math",
@@ -506,6 +506,105 @@
                 }
             ],
             "time": "2025-03-06T22:45:56+00:00"
+        },
+        {
+            "name": "fintrack/core",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../fintrack-core",
+                "reference": "f9b584c60f6805eed73cf63ce148d8496742cba4"
+            },
+            "require": {
+                "illuminate/database": "*",
+                "illuminate/filesystem": "*",
+                "illuminate/http": "*",
+                "illuminate/pagination": "*",
+                "illuminate/support": "*",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "FinTrack\\Core\\Providers\\CoreServiceProvider"
+                    ],
+                    "aliases": {
+                        "Core": "FinTrack\\Core\\Facades\\Core"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FinTrack\\Core\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rapha Panchi",
+                    "email": "raphapanchi@gmail.com"
+                },
+                {
+                    "name": "Chinemerem Ugbaja",
+                    "email": "chinemeremugbaja97@gmail.com"
+                }
+            ],
+            "description": "Core module for fintrack portal",
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "fintrack/fin-lib",
+            "version": "1.0.0",
+            "dist": {
+                "type": "path",
+                "url": "../fin-lib",
+                "reference": "0003575b1f96756db3348e5b071f615524592ebe"
+            },
+            "require": {
+                "illuminate/database": "*",
+                "illuminate/filesystem": "*",
+                "illuminate/http": "*",
+                "illuminate/support": "*",
+                "php": "^8.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "FinTrack\\FinLib\\Providers\\FinLibServiceProvider"
+                    ],
+                    "aliases": {
+                        "FinLib": "FinTrack\\FinLib\\Facades\\FinLib"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FinTrack\\FinLib\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rapha Panchi",
+                    "email": "raphapanchi@gmail.com"
+                },
+                {
+                    "name": "Chinemerem Ugbaja",
+                    "email": "chinemeremugbaja97@gmail.com"
+                }
+            ],
+            "description": "Core module for fintrack portal",
+            "transport-options": {
+                "relative": true
+            }
         },
         {
             "name": "fruitcake/php-cors",
@@ -1283,16 +1382,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.20",
+            "version": "v0.3.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "6d53c826dfd33ec5f4ac91f816ff327727c7988b"
+                "reference": "7753c65c281c2550c7c183f14e18062073b7d821"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/6d53c826dfd33ec5f4ac91f816ff327727c7988b",
-                "reference": "6d53c826dfd33ec5f4ac91f816ff327727c7988b",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/7753c65c281c2550c7c183f14e18062073b7d821",
+                "reference": "7753c65c281c2550c7c183f14e18062073b7d821",
                 "shasum": ""
             },
             "require": {
@@ -1336,9 +1435,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.20"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.21"
             },
-            "time": "2026-06-24T19:16:38+00:00"
+            "time": "2026-06-26T00:11:25+00:00"
         },
         {
             "name": "laravel/sanctum",

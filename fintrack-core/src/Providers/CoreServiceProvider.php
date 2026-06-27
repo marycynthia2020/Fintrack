@@ -4,6 +4,7 @@ namespace FinTrack\Core\Providers;
 
 use FinTrack\Core\Core;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -20,12 +21,17 @@ class CoreServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'fintrack-core');
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/langs', 'fintrack-core');
 
-        $routesPath = __DIR__ . '/../../routes';
-        if (is_dir($routesPath)) {
-            foreach (glob("{$routesPath}/*.php") as $route) {
-                $this->loadRoutesFrom($route);
-            }
-        }
+        Route::middleware('api')
+            ->prefix('fin-api')
+            ->group(function () {
+                $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
+            });
+
+        Route::middleware('web')
+            ->prefix('fin')
+            ->group(function () {
+                $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
+            });
 
         $this->publishes([
             __DIR__ . '/../../config/core.php' => config_path('fintrack-core.php'),

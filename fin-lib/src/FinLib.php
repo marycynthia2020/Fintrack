@@ -4,9 +4,9 @@ namespace FinTrack\FinLib;
 
 class FinLib
 {
-    public function formatAmount(float $amount, string $currency = 'USD', int $decimals = 2): string
+    public function formatAmount(float $amount, string $currency = 'NGN', int $decimals = 2): string
     {
-        return number_format($amount, $decimals) . ' ' . strtoupper($currency);
+        return (string) number_format($amount, $decimals) . ' ' . strtoupper($currency);
     }
 
     public function toMinorUnit(float $amount, int $decimals = 2): int
@@ -18,7 +18,7 @@ class FinLib
     {
         return $amount / pow(10, $decimals);
     }
-
+    
     public function roundAmount(float $amount, int $decimals = 2): float
     {
         return round($amount, $decimals);
