@@ -1,3 +1,5 @@
+<?php
+
 namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
