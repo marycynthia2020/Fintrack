@@ -202,7 +202,6 @@ Important columns:
 | --- | --- | --- |
 | id | uuid | Primary key |
 | organisation_id | foreign id | Tenant owner |
-| unique_id | string | Public unique reference |
 | balance | decimal | Confirmed account balance |
 | created_at | timestamp | Laravel default |
 | updated_at | timestamp | Laravel default |
