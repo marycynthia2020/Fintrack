@@ -259,6 +259,7 @@ Important columns:
 | ledgerable_type | string | Source model type (Income, Expense) |
 | ledgerable_id | uuid | Source model identifier |
 | amount | decimal | Transaction amount |
+| type | string | salary, transport, etc |
 | even_type | string | created, updated, deleted |
 | description | text nullable | Human-readable note |
 | created_by | foreign id | User who caused ledger entry |
