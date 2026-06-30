@@ -4,9 +4,9 @@ namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
 use FinTrack\Core\Models\User;
-use illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;   
 
-class Income extends BaseModel 
+class Expense extends BaseModel
 {
     protected $fillable = [
         'organization_id',
@@ -27,5 +27,4 @@ class Income extends BaseModel
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
-
 }
