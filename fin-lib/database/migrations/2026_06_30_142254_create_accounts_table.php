@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('organization_id')->index();
-            $table->decimal('balance', 15, 2);
+            $table->decimal('balance', 15, 2)->default(0);
             $table->json('metadata')->nullable();
 
             $table->softDeletes();
