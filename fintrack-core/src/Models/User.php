@@ -1,6 +1,6 @@
 <?php
 
-namespace FinTrack\Core\Models;
+namespace FinTrack\Core\Models;  
 
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
