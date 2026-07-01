@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ledger', function (Blueprint $table) {
-            $table->id()->primary();
+            $table->uuid('id')->primary();
             $table->uuid('organization_id')->index();
             $table->decimal('amount', 15, 2);
             $table->uuidMorphs('ledgerable');

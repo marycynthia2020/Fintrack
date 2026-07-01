@@ -4,7 +4,8 @@ namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
 use FinTrack\Core\Models\User;
-use illuminate\Database\Eloquent\Relations\BelongsTo;
+use  Illuminate\Database\Eloquent\Relations\BelongsTo;  
+
 
 class Income extends BaseModel 
 {
