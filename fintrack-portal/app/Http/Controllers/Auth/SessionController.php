@@ -43,4 +43,23 @@ class SessionController extends Controller
 
         return $this->success(null, 'Logged out successfully.');
     }
+
+    public function refresh(Request $request)
+    {
+        $user = $request->user();
+
+        $request->user()->currentAccessToken()->delete();
+
+        $token = $user->createToken('login-token', ['*'], now()->addHours(48));
+
+        $user->load('organization');
+
+        return $this->success(
+            new LoginResource([
+                'user' => $user,
+                'token' => $token->plainTextToken,
+            ]),
+            'Token refreshed successfully.'
+        );
+    }
 }

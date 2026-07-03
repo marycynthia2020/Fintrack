@@ -15,7 +15,7 @@ class Ledger extends BaseModel
         'ledgerable_id',
         'type',
         'description',
-        'event_type',
+        'event_type',  
         'created_by',
         'processed_at',
         'metadata',

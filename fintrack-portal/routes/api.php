@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', fn (Request $request) => $request->user());
     Route::post('/logout', [SessionController::class, 'destroy'])->name('logout');
+    Route::post('/refresh', [SessionController::class, 'refresh'])->name('refresh');
 });
 
 
