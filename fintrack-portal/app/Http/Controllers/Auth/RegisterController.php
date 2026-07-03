@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUserRequest;
-use App\Http\Resources\UserResource;
 use FinTrack\Core\Models\Organization;
 use FinTrack\Core\Models\User;
+use FinTrack\Core\Resources\UserResource;
 use FinTrack\Core\Traits\ApiResponse;
 use Illuminate\Support\Facades\DB;
 

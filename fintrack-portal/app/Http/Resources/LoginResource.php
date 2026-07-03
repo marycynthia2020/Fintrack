@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use FinTrack\Core\Resources\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
