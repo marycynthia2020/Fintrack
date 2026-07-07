@@ -36,6 +36,7 @@ class RegisterController extends Controller
 
         $user->load('organization');
 
+
         return $this->created(new UserResource($user), 'User registered successfully.');
     }
 }

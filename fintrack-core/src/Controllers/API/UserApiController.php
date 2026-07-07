@@ -21,6 +21,7 @@ class UserApiController
 
         $users = (new UserResource($query->get()))->toArray($request);
 
-        return $this->success($users, 'Users retrieved successfully');
+        return $this->success($users, Api::Success->message());
     }
+    
 }

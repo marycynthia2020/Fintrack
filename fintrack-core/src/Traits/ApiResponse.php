@@ -4,6 +4,7 @@ namespace FinTrack\Core\Traits;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Fintrack\FinLib\Enums\Api;
 
 trait ApiResponse
 {

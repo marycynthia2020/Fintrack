@@ -28,6 +28,11 @@ class AuditLogService
 
     public function find(string $id)
     {
-        //
+        try {
+            return AuditLog::findOrFail($id);
+        } catch (\Throwable $th) {
+            \Log::error("AuditLog not found: " . $th->getMessage());
+            throw $th;
+        }
     }
 }

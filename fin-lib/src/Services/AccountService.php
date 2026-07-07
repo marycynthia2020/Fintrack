@@ -30,4 +30,9 @@ class AccountService
     {
         //
     }
+
+    public function forceDelete(Account $account)
+    {
+        //
+    }
 }
