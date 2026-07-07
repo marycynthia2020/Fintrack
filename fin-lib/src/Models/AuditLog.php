@@ -14,4 +14,8 @@ class AuditLog extends BaseModel
         'event_type',
         'metadata',
     ];
+
+    protected $casts = [
+        'metadata' => 'array',
+    ];
 }

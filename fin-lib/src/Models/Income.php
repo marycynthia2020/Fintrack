@@ -18,7 +18,11 @@ class Income extends BaseModel
         'updated_by',
         'metadata',
     ];
-    
+
+    protected $casts = [
+        'metadata' => 'array',
+    ];
+
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

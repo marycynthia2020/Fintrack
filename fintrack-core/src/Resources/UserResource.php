@@ -18,6 +18,7 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'avatar_url' => $this->hasAttachment('avatar')?$this->getAttachmentUrl('avatar'):null,
             'organization_id' => $this->organization_id,
             'organization' => new OrganizationResource($this->whenLoaded('organization')),
             'created_at' => $this->created_at?->toIso8601String(),

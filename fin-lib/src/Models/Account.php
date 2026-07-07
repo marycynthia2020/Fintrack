@@ -12,5 +12,7 @@ class Account extends BaseModel
         'metadata',
     ];
 
-
+    protected $casts = [
+        'metadata' => 'array',
+    ];
 }

@@ -70,18 +70,23 @@ trait HasAttachments
         });
     }
 
-    public function getAttachmentUrl(string $attachmentId): ?string
+    public function getAttachment(string $name): ?Attachment
+    {
+        return $this->attachments()->where('name', $name)->first();
+    }
+
+    public function getAttachmentUrl(string $name): ?string
     {
         /** @var Attachment|null $attachment */
-        $attachment = $this->attachments()->where('id', $attachmentId)->first();
+        $attachment = $this->getAttachment($name);
 
         return $attachment ? $this->disk($attachment->disk)->url($attachment->path) : null;
     }
 
-    public function getTemporaryUrl(string $attachmentId, \DateTimeInterface $expiry): ?string
+    public function getTemporaryUrl(string $name, \DateTimeInterface $expiry): ?string
     {
         /** @var Attachment|null $attachment */
-        $attachment = $this->attachments()->where('id', $attachmentId)->first();
+        $attachment = $this->getAttachment($name);
 
         return $attachment ? $this->disk($attachment->disk)->temporaryUrl($attachment->path, $expiry) : null;
     }

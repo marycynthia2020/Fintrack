@@ -21,6 +21,11 @@ class Ledger extends BaseModel
         'metadata',
     ];
 
+    protected $casts = [
+        'processed_at' => 'datetime',
+        'metadata' => 'array',
+    ];
+
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
