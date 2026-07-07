@@ -2,18 +2,13 @@
 
 namespace FinTrack\FinLib\Services;
 
-use FinTrack\FinLib\Events\LedgerCreated;
 use FinTrack\FinLib\Models\Ledger;
 
 class LedgerService
 {
-    public function create(array $data): Ledger
+    public function create(array $data)
     {
-        $ledger = Ledger::create($data);
-
-        LedgerCreated::dispatch($ledger);
-
-        return $ledger;
+        //
     }
 
     public function update(Ledger $ledger, array $data)
@@ -28,13 +23,11 @@ class LedgerService
 
     public function list(array $filters = [])
     {
-        return Ledger::query()
-            ->when($filters['organization_id'] ?? null, fn ($query, $organizationId) => $query->where('organization_id', $organizationId))
-            ->get();
+        //
     }
 
-    public function find(string $id): ?Ledger
+    public function find(string $id)
     {
-        return Ledger::find($id);
+        //
     }
 }
