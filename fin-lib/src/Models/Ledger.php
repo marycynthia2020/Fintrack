@@ -4,7 +4,8 @@ namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
 use FinTrack\Core\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;   
+use FinTrack\FinLib\Events\LedgerCreated;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ledger extends BaseModel
 {
@@ -24,6 +25,10 @@ class Ledger extends BaseModel
     protected $casts = [
         'processed_at' => 'datetime',
         'metadata' => 'array',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => LedgerCreated::class,
     ];
 
     public function createdBy(): BelongsTo

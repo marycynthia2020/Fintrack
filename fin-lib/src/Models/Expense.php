@@ -4,7 +4,10 @@ namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
 use FinTrack\Core\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;   
+use FinTrack\FinLib\Events\ExpenseCreated;
+use FinTrack\FinLib\Events\ExpenseDeleted;
+use FinTrack\FinLib\Events\ExpenseUpdated;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Expense extends BaseModel
 {
@@ -20,6 +23,12 @@ class Expense extends BaseModel
 
     protected $casts = [
         'metadata' => 'array',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => ExpenseCreated::class,
+        'updated' => ExpenseUpdated::class,
+        'deleted' => ExpenseDeleted::class,
     ];
 
     public function createdBy(): BelongsTo

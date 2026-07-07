@@ -19,14 +19,14 @@ class RecordAuditLog
             $event instanceof ModelDeleted => 'deleted',
         };
 
+        $metadata = $event instanceof ModelUpdated
+            ? ['model' => $model::class, 'model_id' => $model->id, 'original' => $event->original, 'changes' => $event->changes]
+            : ['model' => $model::class, 'model_id' => $model->id, 'attributes' => $model->getAttributes()];
+
         AuditLog::create([
             'organization_id' => $model->organization_id,
             'event_type' => $eventType,
-            'metadata' => [
-                'model' => $model::class,
-                'model_id' => $model->id,
-                'attributes' => $model->getAttributes(),
-            ],
+            'metadata' => $metadata,
         ]);
     }
 }

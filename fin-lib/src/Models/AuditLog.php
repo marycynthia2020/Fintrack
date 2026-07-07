@@ -3,9 +3,7 @@
 namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
-use FinTrack\Core\Models\Organization;
-use FinTrack\Core\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use FinTrack\FinLib\Events\AuditLogCreated;
 
 class AuditLog extends BaseModel
 {
@@ -17,5 +15,9 @@ class AuditLog extends BaseModel
 
     protected $casts = [
         'metadata' => 'array',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => AuditLogCreated::class,
     ];
 }

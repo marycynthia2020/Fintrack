@@ -4,10 +4,13 @@ namespace FinTrack\FinLib\Models;
 
 use FinTrack\Core\Models\BaseModel;
 use FinTrack\Core\Models\User;
-use  Illuminate\Database\Eloquent\Relations\BelongsTo;  
+use FinTrack\FinLib\Events\IncomeCreated;
+use FinTrack\FinLib\Events\IncomeDeleted;
+use FinTrack\FinLib\Events\IncomeUpdated;
+use  Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
-class Income extends BaseModel 
+class Income extends BaseModel
 {
     protected $fillable = [
         'organization_id',
@@ -21,6 +24,12 @@ class Income extends BaseModel
 
     protected $casts = [
         'metadata' => 'array',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => IncomeCreated::class,
+        'updated' => IncomeUpdated::class,
+        'deleted' => IncomeDeleted::class,
     ];
 
     public function createdBy(): BelongsTo
