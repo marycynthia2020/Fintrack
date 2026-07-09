@@ -4,7 +4,7 @@ namespace FinTrack\Core\Traits;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Fintrack\FinLib\Enums\Api;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 trait ApiResponse
 {
@@ -12,7 +12,7 @@ trait ApiResponse
     {
         $payload = ['success' => true, 'message' => $message];
 
-        if ($data instanceof LengthAwarePaginator) {
+        if ($data instanceof LengthAwarePaginator || $data instanceof AnonymousResourceCollection) {
             $payload['data'] = $data->items();
             $payload['meta'] = [
                 'current_page' => $data->currentPage(),
@@ -22,7 +22,7 @@ trait ApiResponse
             ];
         } else {
             $payload['data'] = $data;
-        }
+        } 
 
         return response()->json($payload, $status);
     }

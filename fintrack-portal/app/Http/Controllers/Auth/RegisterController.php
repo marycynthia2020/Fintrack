@@ -9,6 +9,7 @@ use FinTrack\Core\Models\User;
 use FinTrack\Core\Resources\UserResource;
 use FinTrack\Core\Traits\ApiResponse;
 use Illuminate\Support\Facades\DB;
+use FinTrack\FinLib\Enums\Api;
 
 class RegisterController extends Controller
 {
@@ -37,6 +38,6 @@ class RegisterController extends Controller
         $user->load('organization');
 
 
-        return $this->created(new UserResource($user), 'User registered successfully.');
+        return $this->created(new UserResource($user), Api::Created->message());
     }
 }

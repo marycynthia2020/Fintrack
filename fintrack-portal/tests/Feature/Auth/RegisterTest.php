@@ -44,7 +44,7 @@ class RegisterTest extends TestCase
             ])
             ->assertJson([
                 'success' => true,
-                'message' => 'User registered successfully.',
+                'message' => 'Created successfully',
                 'data' => [
                     'name' => 'John Doe',
                     'email' => 'john@example.com',

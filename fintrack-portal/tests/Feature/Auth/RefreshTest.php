@@ -55,7 +55,7 @@ class RefreshTest extends TestCase
             ])
             ->assertJson([
                 'success' => true,
-                'message' => 'Token refreshed successfully.',
+                'message' => 'Success',
                 'data' => [
                     'user' => [
                         'name' => 'Jane Doe',

@@ -1,7 +1,8 @@
 <?php
 namespace FinTrack\Core\Controllers\API;
 
-use App\Http\Resources\UserResource;
+use FinTrack\Core\Resources\UserResource;
+use FinTrack\FinLib\Enums\Api;
 use FinTrack\Core\Models\User;
 use FinTrack\Core\Traits\ApiResponse;
 use Illuminate\Http\Request;

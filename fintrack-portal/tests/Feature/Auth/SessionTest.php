@@ -54,7 +54,7 @@ class SessionTest extends TestCase
             ])
             ->assertJson([
                 'success' => true,
-                'message' => 'Login successful.',
+                'message' => 'Success',
                 'data' => [
                     'user' => [
                         'name' => 'Jane Doe',
@@ -228,7 +228,7 @@ class SessionTest extends TestCase
         $response->assertStatus(200)
             ->assertJson([
                 'success' => true,
-                'message' => 'Logged out successfully.',
+                'message' => 'Success',
             ]);
 
         // Verify token is deleted

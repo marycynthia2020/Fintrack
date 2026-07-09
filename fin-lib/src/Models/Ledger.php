@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ledger extends BaseModel
 {
+    protected $table = 'ledger';
+
     protected $fillable = [
         'organization_id',
         'amount',
