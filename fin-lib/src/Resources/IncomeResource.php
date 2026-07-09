@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use FinTrack\Core\Resources\UserResource;
 
+
 class IncomeResource extends JsonResource
 {
     /**
@@ -18,7 +19,7 @@ class IncomeResource extends JsonResource
         return [
             'id' => $this->id,
             'organization_id' => $this->organization_id,
-            'amount' => (float) $this->amount,
+            'amount' => app('fin-lib')->formatAmount((float)$this->amount),
             'description' => $this->description,
             'type' => $this->type,
             'created_by' => $this->created_by,

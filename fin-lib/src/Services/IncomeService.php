@@ -5,6 +5,7 @@ namespace FinTrack\FinLib\Services;
 use FinTrack\FinLib\Models\Account;
 use FinTrack\FinLib\Models\Income;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class IncomeService
 {
@@ -32,8 +33,8 @@ class IncomeService
     public function delete(Income $income)
     {
         return DB::transaction(function () use ($income) {
-            if (auth()->check()) {
-                $income->update(['updated_by' => auth()->id()]);
+            if (Auth::check()) {
+                $income->updateQuietly(['updated_by' => Auth::id()]);
             }
             $income->delete();
             return $income;
@@ -71,7 +72,7 @@ class IncomeService
 
     public function find(string $id)
     {
-        $orgId = auth()->user()?->organization_id;
+        $orgId = Auth::user()?->organization_id;
         
         $query = Income::query();
         if ($orgId) {

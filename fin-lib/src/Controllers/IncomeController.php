@@ -16,15 +16,9 @@ class IncomeController extends Controller
 {
     use ApiResponse;
 
-    protected IncomeService $incomeService;
-
-    /**
-     * Create a new controller instance.
-     */
-    public function __construct(IncomeService $incomeService)
-    {
-        $this->incomeService = $incomeService;
-    }
+    public function __construct(
+        protected IncomeService $incomeService
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -36,11 +30,7 @@ class IncomeController extends Controller
 
         $incomes = $this->incomeService->list($filters);
 
-        $mappedIncomes = $incomes->map(function ($income) {
-            return new IncomeResource($income);
-        });
-
-        return $this->success($mappedIncomes, Api::Success->message());
+        return $this->success(IncomeResource::collection($incomes), Api::Success->message());
     }
 
     /**
@@ -73,7 +63,13 @@ class IncomeController extends Controller
     public function update(UpdateIncomeRequest $request, string $id)
     {
         $income = $this->incomeService->find($id);
+
+        if ($income->created_by !== $request->user()->id) {
+            abort(403, 'Only the creator of this income can update it.');
+        }
+
         $data = $request->validated();
+        $data['updated_by'] = $request->user()->id;
 
         $updatedIncome = $this->incomeService->update($income, $data);
 
@@ -83,9 +79,13 @@ class IncomeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
         $income = $this->incomeService->find($id);
+
+        if ($income->created_by !== $request->user()->id) {
+            abort(403, 'Only the creator of this income can delete it.');
+        }
 
         $this->incomeService->delete($income);
 

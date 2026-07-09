@@ -3,7 +3,7 @@
 namespace FinTrack\FinLib\Events;
 
 use FinTrack\Core\Events\ModelCreated;
-use Fintrack\FinLib\Models\Income;
+use FinTrack\FinLib\Models\Income;
 
 class IncomeCreated extends ModelCreated
 {

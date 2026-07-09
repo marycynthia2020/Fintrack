@@ -327,6 +327,42 @@ class IncomeTest extends TestCase
     }
 
     /**
+     * Test users cannot update incomes created by another user in the same organization.
+     */
+    public function test_user_cannot_update_income_created_by_another_user(): void
+    {
+        Account::create(['organization_id' => $this->organization->id, 'balance' => 0.00]);
+
+        $creator = User::create([
+            'name' => 'Creator User',
+            'email' => 'creator@example.com',
+            'password' => 'Pass123',
+            'organization_id' => $this->organization->id,
+        ]);
+
+        $income = Income::create([
+            'organization_id' => $this->organization->id,
+            'amount' => 900.00,
+            'type' => 'salary',
+            'created_by' => $creator->id,
+        ]);
+
+        $response = $this->putJson('/fl-api/incomes/' . $income->id, [
+            'amount' => 1000.00,
+        ], [
+            'Authorization' => 'Bearer ' . $this->token,
+        ]);
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseHas('incomes', [
+            'id' => $income->id,
+            'amount' => 900.00,
+            'updated_by' => null,
+        ]);
+    }
+
+    /**
      * Test deleting an income adjusts account balance, soft deletes the income, writes ledger, audit logs, and emails.
      */
     public function test_deleting_income_flow(): void
@@ -390,5 +426,38 @@ class IncomeTest extends TestCase
                        $notification->income->id === $income->id;
             }
         );
+    }
+
+    /**
+     * Test users cannot delete incomes created by another user in the same organization.
+     */
+    public function test_user_cannot_delete_income_created_by_another_user(): void
+    {
+        Account::create(['organization_id' => $this->organization->id, 'balance' => 0.00]);
+
+        $creator = User::create([
+            'name' => 'Delete Creator',
+            'email' => 'delete-creator@example.com',
+            'password' => 'Pass123',
+            'organization_id' => $this->organization->id,
+        ]);
+
+        $income = Income::create([
+            'organization_id' => $this->organization->id,
+            'amount' => 700.00,
+            'type' => 'bonus',
+            'created_by' => $creator->id,
+        ]);
+
+        $response = $this->deleteJson('/fl-api/incomes/' . $income->id, [], [
+            'Authorization' => 'Bearer ' . $this->token,
+        ]);
+
+        $response->assertStatus(403);
+
+        $this->assertDatabaseHas('incomes', [
+            'id' => $income->id,
+            'deleted_at' => null,
+        ]);
     }
 }
