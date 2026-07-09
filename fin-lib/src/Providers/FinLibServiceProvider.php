@@ -7,6 +7,7 @@ use FinTrack\Core\Listeners\RecordLedgerEntry;
 use FinTrack\Core\Listeners\UpdateLedgerEntry;
 use FinTrack\Core\Listeners\DeleteLedgerEntry;
 use FinTrack\FinLib\Listeners\SendIncomeNotification;
+use FinTrack\FinLib\Listeners\SendExpenseNotification;
 use FinTrack\FinLib\Events\AccountCreated;
 use FinTrack\FinLib\Events\AccountDeleted;
 use FinTrack\FinLib\Events\AccountUpdated;
@@ -33,9 +34,9 @@ class FinLibServiceProvider extends ServiceProvider
         IncomeUpdated::class => [UpdateLedgerEntry::class, RecordAuditLog::class, SendIncomeNotification::class],
         IncomeDeleted::class => [DeleteLedgerEntry::class, RecordAuditLog::class, SendIncomeNotification::class],
 
-        ExpenseCreated::class => [RecordLedgerEntry::class, RecordAuditLog::class],
-        ExpenseUpdated::class => [RecordAuditLog::class],
-        ExpenseDeleted::class => [RecordAuditLog::class],
+        ExpenseCreated::class => [RecordLedgerEntry::class, RecordAuditLog::class, SendExpenseNotification::class],
+        ExpenseUpdated::class => [UpdateLedgerEntry::class, RecordAuditLog::class, SendExpenseNotification::class],
+        ExpenseDeleted::class => [DeleteLedgerEntry::class, RecordAuditLog::class, SendExpenseNotification::class],
 
         AccountCreated::class => [RecordAuditLog::class],
         AccountUpdated::class => [RecordAuditLog::class],
