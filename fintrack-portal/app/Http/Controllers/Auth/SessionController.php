@@ -9,6 +9,7 @@ use FinTrack\Core\Models\User;
 use FinTrack\Core\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use FinTrack\FinLib\Enums\Api;
 
 class SessionController extends Controller
 {
@@ -33,7 +34,7 @@ class SessionController extends Controller
                 'user' => $user,
                 'token' => $token->plainTextToken,
             ]),
-            'Login successful.'
+            Api::Success->message()
         );
     }
 
@@ -41,7 +42,7 @@ class SessionController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return $this->success(null, 'Logged out successfully.');
+        return $this->success(null, Api::Success->message());
     }
 
     public function refresh(Request $request)
@@ -59,7 +60,7 @@ class SessionController extends Controller
                 'user' => $user,
                 'token' => $token->plainTextToken,
             ]),
-            'Token refreshed successfully.'
+            Api::Success->message()
         );
     }
 }

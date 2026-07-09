@@ -12,13 +12,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use FinTrack\Core\Traits\HasOrganization;
+use FinTrack\Core\Traits\HasAttachments;
 
 #[Fillable(['name', 'email', 'password', 'organization_id'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable, HasOrganization, SoftDeletes, HasUuids, HasApiTokens;
+    use HasFactory, Notifiable, HasOrganization, SoftDeletes, HasUuids, HasApiTokens, HasAttachments;   
 
     protected $primaryKey = 'id';
     protected $keyType = 'string';

@@ -9,6 +9,6 @@ class IncomeCreated extends ModelCreated
 {
     public function __construct(Income $model)
     {
-        
+        parent::__construct($model);
     }
 }

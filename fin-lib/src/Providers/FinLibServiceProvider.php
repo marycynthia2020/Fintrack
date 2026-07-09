@@ -4,6 +4,9 @@ namespace FinTrack\FinLib\Providers;
 
 use FinTrack\Core\Listeners\RecordAuditLog;
 use FinTrack\Core\Listeners\RecordLedgerEntry;
+use FinTrack\Core\Listeners\UpdateLedgerEntry;
+use FinTrack\Core\Listeners\DeleteLedgerEntry;
+use FinTrack\FinLib\Listeners\SendIncomeNotification;
 use FinTrack\FinLib\Events\AccountCreated;
 use FinTrack\FinLib\Events\AccountDeleted;
 use FinTrack\FinLib\Events\AccountUpdated;
@@ -26,9 +29,9 @@ class FinLibServiceProvider extends ServiceProvider
      * Maps each fin-lib event to the fintrack-core listeners that handle it.
      */
     protected array $listen = [
-        IncomeCreated::class => [RecordLedgerEntry::class, RecordAuditLog::class],
-        IncomeUpdated::class => [RecordAuditLog::class],
-        IncomeDeleted::class => [RecordAuditLog::class],
+        IncomeCreated::class => [RecordLedgerEntry::class, RecordAuditLog::class, SendIncomeNotification::class],
+        IncomeUpdated::class => [UpdateLedgerEntry::class, RecordAuditLog::class, SendIncomeNotification::class],
+        IncomeDeleted::class => [DeleteLedgerEntry::class, RecordAuditLog::class, SendIncomeNotification::class],
 
         ExpenseCreated::class => [RecordLedgerEntry::class, RecordAuditLog::class],
         ExpenseUpdated::class => [RecordAuditLog::class],
