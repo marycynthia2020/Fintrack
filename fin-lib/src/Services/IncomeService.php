@@ -12,7 +12,6 @@ class IncomeService
     public function create(array $data)
     {
         return DB::transaction(function () use ($data) {
-            // Guarantee the organization account exists before creating the income
             Account::firstOrCreate(
                 ['organization_id' => $data['organization_id']],
                 ['balance' => 0.00]

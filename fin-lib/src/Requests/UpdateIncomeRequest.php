@@ -20,9 +20,9 @@ class UpdateIncomeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => ['sometimes', 'required', 'numeric', 'gt:0'],
+            'amount' => ['required', 'numeric', 'gt:0'],
             'description' => ['nullable', 'string', 'max:1000'],
-            'type' => ['sometimes', 'required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
             'metadata' => ['nullable', 'array'],
         ];
     }

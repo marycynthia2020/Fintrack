@@ -47,23 +47,23 @@ class IncomeNotification extends Notification implements ShouldQueue
 
         if ($this->action === 'created') {
             $mailMessage->line("A new income record has been added to your organization ({$orgName}).")
-                ->line("Amount: $" . number_format($this->income->amount, 2))
+                ->line("Amount:" . app('fin-lib')->formatAmount((float)$this->income->amount))
                 ->line("Type: " . $this->income->type)
                 ->line("Description: " . ($this->income->description ?? 'N/A'))
                 ->line("Recorded By: " . ($this->income->createdBy?->name ?? 'N/A'));
         } elseif ($this->action === 'updated') {
             $mailMessage->line("An income record has been updated in your organization ({$orgName}).")
-                ->line("New Amount: $" . number_format($this->income->amount, 2))
+                ->line("New Amount:" . app('fin-lib')->formatAmount((float)$this->income->amount))
                 ->line("Type: " . $this->income->type)
                 ->line("Description: " . ($this->income->description ?? 'N/A'))
                 ->line("Updated By: " . ($this->income->updatedBy?->name ?? 'N/A'));
 
             if (isset($this->extraData['original']['amount'])) {
-                $mailMessage->line("Previous Amount: $" . number_format($this->extraData['original']['amount'], 2));
+                $mailMessage->line("Previous Amount:" . app('fin-lib')->formatAmount((float)$this->extraData['original']['amount']));
             }
         } elseif ($this->action === 'deleted') {
             $mailMessage->line("An income record has been deleted from your organization ({$orgName}).")
-                ->line("Amount: $" . number_format($this->income->amount, 2))
+                ->line("Amount:" . app('fin-lib')->formatAmount((float)$this->income->amount))
                 ->line("Type: " . $this->income->type)
                 ->line("Description: " . ($this->income->description ?? 'N/A'));
         }

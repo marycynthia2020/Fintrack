@@ -29,12 +29,13 @@ class IncomeController extends Controller
         $filters['organization_id'] = $request->user()->organization_id;
 
         $incomes = $this->incomeService->list($filters);
+        $incomes->load('createdBy', 'updatedBy');
 
         return $this->success(IncomeResource::collection($incomes), Api::Success->message());
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource.
      */
     public function store(StoreIncomeRequest $request)
     {
@@ -53,6 +54,7 @@ class IncomeController extends Controller
     public function show(string $id)
     {
         $income = $this->incomeService->find($id);
+        $income->load('createdBy', 'updatedBy');
 
         return $this->success(new IncomeResource($income), Api::Success->message());
     }
@@ -72,7 +74,7 @@ class IncomeController extends Controller
         $data['updated_by'] = $request->user()->id;
 
         $updatedIncome = $this->incomeService->update($income, $data);
-
+         $income->load('createdBy', 'updatedBy');
         return $this->success(new IncomeResource($updatedIncome), Api::Success->message());
     }
 
