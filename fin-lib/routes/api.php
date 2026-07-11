@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use FinTrack\FinLib\Controllers\IncomeController;
 use FinTrack\FinLib\Controllers\ExpenseController;
+use FinTrack\FinLib\Controllers\AccountController;
 
 
 // protected routes
@@ -11,6 +12,7 @@ Route::middleware(['auth:sanctum'])
     // pls note: you can; add protected routes here
     Route::apiResource('incomes', IncomeController::class);
     Route::apiResource('expenses', ExpenseController::class);
+    Route::get('accounts/balance', [AccountController::class, 'balance'])->name('accounts.balance');
     
 });
 

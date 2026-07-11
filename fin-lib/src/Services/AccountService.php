@@ -6,6 +6,14 @@ use FinTrack\FinLib\Models\Account;
 
 class AccountService
 {
+     public function find(string $organizationId)
+    {
+         return Account::firstOrCreate(
+            ['organization_id' => $organizationId],
+            ['balance' => 0.00]
+        );
+    }
+
     public function create(array $data)
     {
         //
@@ -22,11 +30,6 @@ class AccountService
     }
 
     public function list(array $filters = [])
-    {
-        //
-    }
-
-    public function find(string $id)
     {
         //
     }
