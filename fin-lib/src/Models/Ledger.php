@@ -37,4 +37,9 @@ class Ledger extends BaseModel
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function ledgerable()
+    {
+        return $this->morphTo();
+    }
 }
