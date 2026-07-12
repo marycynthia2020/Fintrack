@@ -93,4 +93,11 @@ class IncomeController extends Controller
 
         return $this->success(null, Api::Success->message());
     }
+
+    public function categories()
+    {
+        return $this->success(
+            $this->incomeService->categories()
+        );
+    }
 }

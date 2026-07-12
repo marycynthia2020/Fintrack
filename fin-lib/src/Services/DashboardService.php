@@ -8,12 +8,6 @@ use FinTrack\FinLib\Models\Expense;
 
 class DashboardService
 {
-    /**
-     * Get the dashboard summary statistics for an organization.
-     *
-     * @param string $organizationId
-     * @return array
-     */
     public function getSummary(string $organizationId): array
     {
         $account = Account::firstOrCreate(
@@ -35,9 +29,9 @@ class DashboardService
         return [
             'balance' => (float) $account->balance,
             'total_income' => (float) $incomeStats->total,
-            'total_expense' => (float) $expenseStats->total,
+            'total_expenses' => (float) $expenseStats->total,
             'income_count' => $incomeCount,
-            'expense_count' => $expenseCount,
+            'expenses_count' => $expenseCount,
             'total_transactions' => $incomeCount + $expenseCount,
         ];
     }

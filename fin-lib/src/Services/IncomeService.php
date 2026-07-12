@@ -5,6 +5,7 @@ namespace FinTrack\FinLib\Services;
 use FinTrack\FinLib\Models\Account;
 use FinTrack\FinLib\Models\Income;
 use Illuminate\Support\Facades\DB;
+use FinTrack\FinLib\Enums\IncomeType;
 use Illuminate\Support\Facades\Auth;
 
 class IncomeService
@@ -80,4 +81,13 @@ class IncomeService
 
         return $query->findOrFail($id);
     }
+
+        public function categories() 
+        {
+            return collect(IncomeType::cases())
+                ->map(fn ($case) =>[
+                    'value' =>$case->value,
+                    'label' => $case->label(),
+                ]);
+        }
 }

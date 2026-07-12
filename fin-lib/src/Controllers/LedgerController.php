@@ -23,9 +23,8 @@ class LedgerController extends Controller
         $filters['organization_id'] = $request->user()->organization_id;
 
         $ledgers = $this->ledgerService->list($filters);
-        
-        // Eager load relations
-        $ledgers->load('createdBy', 'ledgerable');
+
+        $ledgers->load('createdBy');
 
         return $this->success(LedgerResource::collection($ledgers), Api::Success->message());
     }

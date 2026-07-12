@@ -17,12 +17,6 @@ class DashboardController extends Controller
         protected DashboardService $dashboardService
     ) {}
 
-    /**
-     * Display the dashboard summary for the authenticated user's organization.
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function summary(Request $request)
     {
         $organizationId = $request->user()->organization_id;

@@ -3,6 +3,8 @@
 namespace FinTrack\FinLib\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use FinTrack\FinLib\Enums\ExpenseType;
+use Illuminate\Validation\Rule;
 
 class StoreExpenseRequest extends FormRequest
 {
@@ -22,7 +24,7 @@ class StoreExpenseRequest extends FormRequest
         return [
             'amount' => ['required', 'numeric', 'gt:0'],
             'description' => ['nullable', 'string', 'max:1000'],
-            'type' => ['required', 'string', 'max:255'],
+            'type' => ['required', Rule::enum(ExpenseType::class)],
             'metadata' => ['nullable', 'array'],
         ];
     }

@@ -17,9 +17,9 @@ class DashboardSummaryResource extends JsonResource
         return [
             'balance' => app('fin-lib')->formatAmount((float) $this['balance']),
             'total_income' => app('fin-lib')->formatAmount((float) $this['total_income']),
-            'total_expense' => app('fin-lib')->formatAmount((float) $this['total_expense']),
+            'total_expenses' => app('fin-lib')->formatAmount((float) $this['total_expenses']),
             'income_count' => (int) $this['income_count'],
-            'expense_count' => (int) $this['expense_count'],
+            'expenses_count' => (int) $this['expense_count'],
             'total_transactions' => (int) $this['total_transactions'],
         ];
     }
