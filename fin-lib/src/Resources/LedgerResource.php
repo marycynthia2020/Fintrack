@@ -32,15 +32,6 @@ class LedgerResource extends JsonResource
             'created_at' => $this->created_at?->toIso8601String(),
             'updated_at' => $this->updated_at?->toIso8601String(),
             'creator' => new UserResource($this->whenLoaded('createdBy')),
-            'ledgerable' => $this->whenLoaded('ledgerable', function () {
-                if ($this->ledgerable instanceof \FinTrack\FinLib\Models\Income) {
-                    return new IncomeResource($this->ledgerable);
-                }
-                if ($this->ledgerable instanceof \FinTrack\FinLib\Models\Expense) {
-                    return new ExpenseResource($this->ledgerable);
-                }
-                return $this->ledgerable;
-            }),
         ];
     }
 }

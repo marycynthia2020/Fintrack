@@ -3,6 +3,7 @@
 namespace FinTrack\FinLib\Services;
 
 use FinTrack\FinLib\Models\Ledger;
+use Illuminate\Support\Facades\Auth;
 
 class LedgerService
 {
@@ -63,7 +64,7 @@ class LedgerService
 
     public function find(string $id)
     {
-        $orgId = \Illuminate\Support\Facades\Auth::user()?->organization_id;
+        $orgId = Auth::user()?->organization_id;
         
         $query = Ledger::query();
         if ($orgId) {

@@ -16,7 +16,7 @@ Route::middleware(['auth:sanctum'])
     Route::apiResource('expenses', ExpenseController::class);
     Route::get('accounts/balance', [AccountController::class, 'balance'])->name('accounts.balance');
     Route::get('dashboard/summary', [DashboardController::class, 'summary'])->name('dashboard.summary');
-    Route::get('transactions', [LedgerController::class, 'index'])->name('transactions.index');
+    Route::get('transactions', [LedgerController::class, 'index'])->name('transactions');
 });
 
 

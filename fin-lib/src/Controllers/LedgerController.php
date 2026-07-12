@@ -17,12 +17,6 @@ class LedgerController extends Controller
         protected LedgerService $ledgerService
     ) {}
 
-    /**
-     * Display a listing of transactions (ledger entries).
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index(Request $request)
     {
         $filters = $request->only(['type', 'event_type', 'created_by', 'start_date', 'end_date', 'per_page']);
