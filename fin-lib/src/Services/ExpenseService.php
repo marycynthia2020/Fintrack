@@ -6,7 +6,7 @@ use FinTrack\FinLib\Models\Account;
 use FinTrack\FinLib\Models\Expense;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use FinTrack\FinLib\Enums\ExpenseType;
 class ExpenseService
 {
     public function create(array $data)
@@ -80,4 +80,13 @@ class ExpenseService
 
         return $query->findOrFail($id);
     }
+
+     public function categories() 
+        {
+            return collect(ExpenseType::cases())
+                ->map(fn ($case) =>[
+                    'value' =>$case->value,
+                    'label' => $case->label(),
+                ]);
+        }
 }

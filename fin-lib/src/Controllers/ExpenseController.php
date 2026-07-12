@@ -94,4 +94,11 @@ class ExpenseController extends Controller
 
         return $this->success(null, Api::Success->message());
     }
+
+    public function categories()
+    {
+        return $this->success(
+            $this->expenseService->categories()
+        );
+    }
 }
