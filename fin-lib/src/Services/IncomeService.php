@@ -73,7 +73,7 @@ class IncomeService
     public function find(string $id)
     {
         $orgId = Auth::user()?->organization_id;
-        
+
         $query = Income::query();
         if ($orgId) {
             $query->where('organization_id', $orgId);
@@ -82,12 +82,12 @@ class IncomeService
         return $query->findOrFail($id);
     }
 
-        public function categories() 
-        {
-            return collect(IncomeType::cases())
-                ->map(fn ($case) =>[
-                    'value' =>$case->value,
-                    'label' => $case->label(),
-                ]);
-        }
+    public function categories()
+    {
+        return collect(IncomeType::cases())
+            ->map(fn($case) => [
+                'value' => $case->value,
+                'label' => $case->label(),
+            ]);
+    }
 }
