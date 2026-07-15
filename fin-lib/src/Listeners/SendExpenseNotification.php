@@ -6,7 +6,9 @@ use FinTrack\Core\Models\User;
 use FinTrack\FinLib\Events\ExpenseCreated;
 use FinTrack\FinLib\Events\ExpenseDeleted;
 use FinTrack\FinLib\Events\ExpenseUpdated;
+use FinTrack\FinLib\Mails\ExpenseMail;
 use FinTrack\FinLib\Notifications\ExpenseNotification;
+use Illuminate\Support\Facades\Mail;
 
 class SendExpenseNotification
 {
@@ -36,7 +38,7 @@ class SendExpenseNotification
 
         if ($user) {
             $user->loadMissing('organization');
-            $user->notify(new ExpenseNotification($model, $action, $extraData));
+            Mail::to($user->email)->send(new ExpenseMail($model, $action, $extraData));
         }
     }
 }
