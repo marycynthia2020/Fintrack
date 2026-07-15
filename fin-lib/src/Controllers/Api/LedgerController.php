@@ -1,6 +1,6 @@
 <?php
 
-namespace FinTrack\FinLib\Controllers;
+namespace FinTrack\FinLib\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use FinTrack\FinLib\Services\LedgerService;

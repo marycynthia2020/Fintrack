@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use FinTrack\FinLib\Controllers\IncomeController;
-use FinTrack\FinLib\Controllers\ExpenseController;
-use FinTrack\FinLib\Controllers\AccountController;
-use FinTrack\FinLib\Controllers\DashboardController;
-use FinTrack\FinLib\Controllers\LedgerController;
+use FinTrack\FinLib\Controllers\Api\IncomeController;
+use FinTrack\FinLib\Controllers\Api\ExpenseController;
+use FinTrack\FinLib\Controllers\Api\AccountController;
+use FinTrack\FinLib\Controllers\Api\DashboardController;
+use FinTrack\FinLib\Controllers\Api\LedgerController;
 
 
 // protected routes

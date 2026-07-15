@@ -45,8 +45,8 @@ class IncomeService
     {
         $query = Income::query();
 
-        if (isset($filters['organization_id'])) {
-            $query->where('organization_id', $filters['organization_id']);
+        if (isset($orgId)) {
+            $query->ofOrganization($filters['organization_id']);
         }
 
         if (isset($filters['type'])) {
@@ -74,12 +74,9 @@ class IncomeService
     {
         $orgId = Auth::user()?->organization_id;
 
-        $query = Income::query();
-        if ($orgId) {
-            $query->where('organization_id', $orgId);
-        }
-
-        return $query->findOrFail($id);
+         return Income::query()
+        ->when($orgId, fn($query) => $query->ofOrganization($orgId))
+        ->findOrFail($id);
     }
 
     public function categories()

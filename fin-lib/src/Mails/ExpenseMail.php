@@ -1,34 +1,34 @@
 <?php
 namespace FinTrack\FinLib\Mails;
 
-use FinTrack\FinLib\Models\Income;
+use FinTrack\FinLib\Models\Expense;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class IncomeMail extends Mailable
+class ExpenseMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    private Income $income;
+    private Expense $expense;
     private string $action;
     private array $extraData;
      public function __construct(
-        Income $income,
+        Expense $expense,
         string $action,
         array $extraData = []
     ) {
-        $this->income =  $income;
+        $this->expense =  $expense;
         $this->action = $action;
         $this->extraData = $extraData;
     }
 
     public function build(): self
     {
-        return $this->subject('Income Alert - ' . config('app.name'))
-            ->view('fin-lib::emails.income.notification')
+        return $this->subject('Expense Alert - ' . config('app.name'))
+            ->view('fin-lib::emails.expenses.notification')
             ->with([
-                'income' => $this->income,
+                'expense' => $this->expense,
                 'action' => $this->action,
                 'extraData' => $this->extraData,
             ]);

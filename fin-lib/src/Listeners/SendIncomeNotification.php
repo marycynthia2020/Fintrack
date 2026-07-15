@@ -2,14 +2,13 @@
 
 namespace FinTrack\FinLib\Listeners;
 
-use FinTrack\Core\Events\ModelCreated;
-use FinTrack\Core\Events\ModelDeleted;
-use FinTrack\Core\Events\ModelUpdated;
 use FinTrack\Core\Models\User;
 use FinTrack\FinLib\Events\IncomeCreated;
 use FinTrack\FinLib\Events\IncomeDeleted;
 use FinTrack\FinLib\Events\IncomeUpdated;
+use FinTrack\FinLib\Mails\IncomeMail;
 use FinTrack\FinLib\Notifications\IncomeNotification;
+use Illuminate\Support\Facades\Mail;
 
 class SendIncomeNotification
 {
@@ -39,7 +38,7 @@ class SendIncomeNotification
 
         if ($user) {
             $user->loadMissing('organization');
-            $user->notify(new IncomeNotification($model, $action, $extraData));
+            Mail::to($user->email)->send(new IncomeMail($model, $action, $extraData));
         }
     }
 }
