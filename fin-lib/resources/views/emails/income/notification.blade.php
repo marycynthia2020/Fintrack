@@ -12,7 +12,7 @@
 
     <div>
         <h1>Income Alert</h1>
-        <p>An income has been {{ $action }} in your organization</p>
+        <p>An income has been {{ $action }}</p>
         <p><strong>Amount:</strong> {{ app('fin-lib')->formatAmount((float) $income->amount) }}</p>
         @if(isset($extraData['original']['amount']))
         <p>

@@ -2,11 +2,13 @@
 
 namespace FinTrack\FinLib\Notifications;
 
+use FinTrack\FinLib\Mails\IncomeMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use FinTrack\FinLib\Models\Income;
+use Illuminate\Support\Facades\Mail;
 
 class IncomeNotification extends Notification implements ShouldQueue
 {
@@ -44,6 +46,9 @@ class IncomeNotification extends Notification implements ShouldQueue
         $mailMessage = (new MailMessage)
             ->subject("Income Record " . ucfirst($this->action))
             ->greeting("Hello " . $notifiable->name . ",");
+        
+            $mail = new IncomeMail(($this->income));
+            Mail::to($this->income->user->email)->send($mail);
 
         if ($this->action === 'created') {
             $mailMessage->line("A new income record has been added to your organization ({$orgName}).")
