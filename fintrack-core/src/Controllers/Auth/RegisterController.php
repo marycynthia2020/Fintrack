@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace FinTrack\Core\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterUserRequest;
+use FinTrack\Core\Requests\RegisterUserRequest;
 use FinTrack\Core\Models\Organization;
 use FinTrack\Core\Models\User;
 use FinTrack\Core\Resources\UserResource;

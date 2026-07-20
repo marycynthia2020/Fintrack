@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace FinTrack\Core\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginRequest;
-use App\Http\Resources\LoginResource;
+use FinTrack\Core\Requests\LoginRequest;
+use FinTrack\Core\Resources\LoginResource;
 use FinTrack\Core\Models\User;
 use FinTrack\Core\Traits\ApiResponse;
 use Illuminate\Http\Request;
