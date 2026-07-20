@@ -22,13 +22,13 @@ class CoreServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/langs', 'fintrack-core');
 
         Route::middleware('api')
-            ->prefix('fin-api')
+            ->prefix('fc-api')
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
             });
 
         Route::middleware('web')
-            ->prefix('fin')
+            ->prefix('fc')
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
             });

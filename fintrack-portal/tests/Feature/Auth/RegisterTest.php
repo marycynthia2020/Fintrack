@@ -16,7 +16,7 @@ class RegisterTest extends TestCase
      */
     public function test_user_can_register_with_organization(): void
     {
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'Pass123',
@@ -72,7 +72,7 @@ class RegisterTest extends TestCase
      */
     public function test_user_can_register_without_organization_falls_back_to_name(): void
     {
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'Jane Doe',
             'email' => 'jane@example.com',
             'password' => 'Pass123',
@@ -106,7 +106,7 @@ class RegisterTest extends TestCase
     public function test_registration_validation_rules(): void
     {
         // 1. Short name (less than 3 chars)
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'Jo',
             'email' => 'jo@example.com',
             'password' => 'Pass123',
@@ -115,7 +115,7 @@ class RegisterTest extends TestCase
             ->assertJsonValidationErrors(['name']);
 
         // 2. Invalid email
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'not-an-email',
             'password' => 'Pass123',
@@ -124,7 +124,7 @@ class RegisterTest extends TestCase
             ->assertJsonValidationErrors(['email']);
 
         // 3. Password too short (less than 4 chars)
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'P12',
@@ -133,7 +133,7 @@ class RegisterTest extends TestCase
             ->assertJsonValidationErrors(['password']);
 
         // 4. Password missing uppercase
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'pass123',
@@ -142,7 +142,7 @@ class RegisterTest extends TestCase
             ->assertJsonValidationErrors(['password']);
 
         // 5. Password missing lowercase
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'PASS123',
@@ -151,7 +151,7 @@ class RegisterTest extends TestCase
             ->assertJsonValidationErrors(['password']);
 
         // 6. Password missing number
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'john@example.com',
             'password' => 'Password',
@@ -174,7 +174,7 @@ class RegisterTest extends TestCase
             'organization_id' => $org->id,
         ]);
 
-        $response = $this->postJson('/api/register', [
+        $response = $this->postJson('/fc-api/register', [
             'name' => 'John Doe',
             'email' => 'existing@example.com',
             'password' => 'Pass123',

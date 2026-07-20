@@ -25,7 +25,7 @@ class SessionTest extends TestCase
             'organization_id' => $org->id,
         ]);
 
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'jane@example.com',
             'password' => 'Pass123',
         ]);
@@ -83,7 +83,7 @@ class SessionTest extends TestCase
         ]);
 
         // Wrong password
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'jane@example.com',
             'password' => 'WrongPass',
         ]);
@@ -95,7 +95,7 @@ class SessionTest extends TestCase
             ]);
 
         // Non-existent email
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'nonexistent@example.com',
             'password' => 'Pass123',
         ]);
@@ -113,7 +113,7 @@ class SessionTest extends TestCase
     public function test_login_validation_rules(): void
     {
         // 1. Missing email
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'password' => 'Pass123',
         ]);
         $response->assertStatus(422)
@@ -127,7 +127,7 @@ class SessionTest extends TestCase
             ->assertJsonValidationErrors(['password']);
 
         // 3. Invalid email format
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'not-an-email',
             'password' => 'Pass123',
         ]);
@@ -155,7 +155,7 @@ class SessionTest extends TestCase
         $this->assertEquals(2, $user->tokens()->count());
 
         // Perform login
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'jane@example.com',
             'password' => 'Pass123',
         ]);
@@ -182,7 +182,7 @@ class SessionTest extends TestCase
         $now = Carbon::now()->microsecond(0);
         Carbon::setTestNow($now);
 
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'jane@example.com',
             'password' => 'Pass123',
         ]);
@@ -211,7 +211,7 @@ class SessionTest extends TestCase
             'organization_id' => $org->id,
         ]);
 
-        $loginResponse = $this->postJson('/api/login', [
+        $loginResponse = $this->postJson('/fc-api/login', [
             'email' => 'jane@example.com',
             'password' => 'Pass123',
         ]);
@@ -221,7 +221,7 @@ class SessionTest extends TestCase
         $this->assertEquals(1, $user->tokens()->count());
 
         // Call logout endpoint with token
-        $response = $this->postJson('/api/logout', [], [
+        $response = $this->postJson('/fc-api/logout', [], [
             'Authorization' => 'Bearer ' . $token,
         ]);
 
@@ -240,7 +240,7 @@ class SessionTest extends TestCase
      */
     public function test_logout_fails_when_unauthenticated(): void
     {
-        $response = $this->postJson('/api/logout');
+        $response = $this->postJson('/fc-api/logout');
 
         // Should return 401 unauthenticated
         $response->assertStatus(401);

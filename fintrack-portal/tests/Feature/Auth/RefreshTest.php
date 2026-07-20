@@ -27,7 +27,7 @@ class RefreshTest extends TestCase
 
         $token = $user->createToken('login-token')->plainTextToken;
 
-        $response = $this->postJson('/api/refresh', [], [
+        $response = $this->postJson('/fc-api/refresh', [], [
             'Authorization' => 'Bearer ' . $token,
         ]);
 
@@ -88,7 +88,7 @@ class RefreshTest extends TestCase
         $token = $user->createToken('login-token')->plainTextToken;
 
         // Perform refresh
-        $response = $this->postJson('/api/refresh', [], [
+        $response = $this->postJson('/fc-api/refresh', [], [
             'Authorization' => 'Bearer ' . $token,
         ]);
 
@@ -98,7 +98,7 @@ class RefreshTest extends TestCase
         $this->app['auth']->forgetUser();
 
         // Try to access user info or perform another refresh with the old token
-        $retryResponse = $this->postJson('/api/refresh', [], [
+        $retryResponse = $this->postJson('/fc-api/refresh', [], [
             'Authorization' => 'Bearer ' . $token,
         ]);
 
@@ -110,7 +110,7 @@ class RefreshTest extends TestCase
      */
     public function test_refresh_fails_when_unauthenticated(): void
     {
-        $response = $this->postJson('/api/refresh');
+        $response = $this->postJson('/fc-api/refresh');
 
         $response->assertStatus(401);
     }
@@ -133,7 +133,7 @@ class RefreshTest extends TestCase
         $now = Carbon::now()->microsecond(0);
         Carbon::setTestNow($now);
 
-        $response = $this->postJson('/api/refresh', [], [
+        $response = $this->postJson('/fc-api/refresh', [], [
             'Authorization' => 'Bearer ' . $token,
         ]);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace FinTrack\Core\Resources;
 
 use FinTrack\Core\Resources\UserResource;
 use Illuminate\Http\Request;
