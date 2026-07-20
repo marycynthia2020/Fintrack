@@ -47,8 +47,7 @@ class IncomeNotification extends Notification implements ShouldQueue
             ->subject("Income Record " . ucfirst($this->action))
             ->greeting("Hello " . $notifiable->name . ",");
         
-            $mail = new IncomeMail(($this->income));
-            Mail::to($this->income->user->email)->send($mail);
+
 
         if ($this->action === 'created') {
             $mailMessage->line("A new income record has been added to your organization ({$orgName}).")
