@@ -120,7 +120,7 @@ class SessionTest extends TestCase
             ->assertJsonValidationErrors(['email']);
 
         // 2. Missing password
-        $response = $this->postJson('/api/login', [
+        $response = $this->postJson('/fc-api/login', [
             'email' => 'jane@example.com',
         ]);
         $response->assertStatus(422)

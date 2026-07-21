@@ -17,12 +17,12 @@
             </style>
         @endif
     </head>
-    <body>
-        <div>
-            this is Fintrack
+    <body class="bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 antialiased">
+        <div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
+            <div class="w-full max-w-md">
+
+                @yield('content')
+            </div>
         </div>
-         @yield('content')
-       
-        
     </body>
 </html>
