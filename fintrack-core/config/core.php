@@ -17,4 +17,9 @@ return [
         'folder' => env('FINTRACK_ARTIFACTS_FOLDER', 'artifacts'),
     ],
 
+    'api' => [
+        'version' => env('API_VERSION', 'v1'),
+        'prefix' => env('api')
+    ]
+
 ];

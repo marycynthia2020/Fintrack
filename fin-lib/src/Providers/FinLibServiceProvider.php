@@ -66,7 +66,7 @@ class FinLibServiceProvider extends ServiceProvider
         $this->loadTranslationsFrom(__DIR__ . '/../../resources/langs', 'fin-lib');
 
         Route::middleware('api')
-            ->prefix('fl-api')
+        ->prefix('api/'.config('fintrack-core.api.version').'/fl')
             ->group(function () {
                 $this->loadRoutesFrom(__DIR__ . '/../../routes/api.php');
             });

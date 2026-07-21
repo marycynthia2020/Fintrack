@@ -1,5 +1,7 @@
 <?php
 
+use FinTrack\Core\Controllers\API\UserApiController;
+use Fintrack\Core\Controllers\Web\Auth\WebAuthController;
 use Illuminate\Support\Facades\Route;
 
 // protected routes
@@ -10,5 +12,7 @@ Route::middleware('auth')
 
 // public routes
 Route::middleware('guest')->group(function () {
-    // pls note: you can add public routes here
+    Route::get('/register', [WebAuthController::class, 'register'])->name('register');
+    Route::get('/login', [WebAuthController::class, 'login'])->name('login');
+    
 });

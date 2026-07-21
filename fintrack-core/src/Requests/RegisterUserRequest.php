@@ -22,15 +22,16 @@ class RegisterUserRequest extends FormRequest
      */
     public function rules(): array
     {
+        $passwordValidity = app()->environment('production')? Password::min(4)
+                    ->mixedCase()
+                    ->numbers(): Password::min(4);
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => [
                 'required',
                 'string',
-                Password::min(4)
-                    ->mixedCase()
-                    ->numbers(),
+                $passwordValidity,
             ],
             'organization' => ['nullable', 'string', 'max:255'],
         ];
