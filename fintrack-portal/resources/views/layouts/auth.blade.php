@@ -17,12 +17,29 @@
             </style>
         @endif
     </head>
-    <body class="bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-zinc-100 antialiased">
-        <div class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-6 md:p-8">
-            <div class="w-full max-w-md">
+    <body class="bg-slate-350/50 text-slate-900 antialiased ">
+        <div class=" mx-auto flex min-h-[calc(100vh-2rem)] w-full  flex-col sm:min-h-[calc(100vh-3rem)]">
+            <header class=" bg-white shadow-sm ">
+                <div class="flex items-center justify-between px-4 py-4 max-w-360 mx-auto">
+                    <a href="" class="cursor-pointer">
+                        <x-logo />
+                    </a>
 
-                @yield('content')
-            </div>
+                    <a href="{{ route('register') }}" class="rounded-md bg-blue-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Sign up
+                    </a>
+                </div>
+            </header>
+
+            <main class="flex flex-1 items-center justify-center py-6">
+                <div class="w-full max-w-md">
+                    @yield('content')
+                </div>
+            </main>
+
+            <footer class="border-t border-slate-300 pt-4 text-center text-xs text-slate-500">
+                @include('partials.footer')
+            </footer>
         </div>
     </body>
 </html>

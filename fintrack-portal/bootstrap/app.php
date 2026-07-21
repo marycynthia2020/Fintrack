@@ -16,6 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectGuestsTo('/login');
          $middleware->alias([
         'portal.auth' => \App\Http\Middleware\PortalAuthenticate::class,
+        'portal.guest' => \App\Http\Middleware\PortalGuest::class,
+        
     ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

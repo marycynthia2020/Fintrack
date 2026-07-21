@@ -31,7 +31,7 @@
                 placeholder="Create a secure password" 
                 required 
             />
-            {{-- <p class="text-xs text-gray-500 dark:text-zinc-400 -mt-2 mb-4 font-normal">
+            {{-- <p class="text-xs text-slate-500 -mt-2 mb-4 font-normal">
                 Must be at least 4 characters, containing both uppercase and lowercase letters and numbers.
             </p> --}}
         </div>
@@ -50,9 +50,9 @@
         </div>
     </form>
 
-    <div class="mt-6 text-center text-sm text-gray-500 dark:text-zinc-400">
+    <div class="mt-6 text-center text-sm text-slate-500">
         Already have an account? 
-        <a href="{{ route('login') }}" class="font-semibold text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300">
+        <a href="{{ route('login') }}" class="font-semibold text-blue-600 hover:text-blue-700">
             Sign In
         </a>
     </div>
