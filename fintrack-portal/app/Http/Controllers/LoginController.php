@@ -2,63 +2,58 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Auth\AuthService;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct(
+        protected AuthService $authService
+    ) {}
+
     public function index()
     {
         return view('auth.login');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        $response = $this->authService->login($credentials);
+
+        if (! $response->successful()) {
+
+            return back()
+                ->withErrors([
+                    'email' => $response->json('message') ?? 'Invalid credentials.',
+                ])
+                ->withInput();
+        }
+
+        $data = $response->json('data');
+
+        session([
+            'api_token' => $data['token'],
+            'user' => $data['user'],
+        ]);
+
+        return redirect()
+            ->route('dashboard')
+            ->with('status', 'Login successful');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function logout(Request $request)
     {
-        //
-    }
+        $this->authService->logout();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $request->session()->invalidate();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        $request->session()->regenerateToken();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('login');
     }
 }
