@@ -3,12 +3,36 @@
 namespace App\Services\Auth;
 
 use App\Services\BaseApiService;
+use Exception;
+use FinTrack\Core\Models\User;
+use FinTrack\Core\Resources\LoginResource;
+use FinTrack\Core\Traits\ApiResponse;
+use FinTrack\FinLib\Enums\Api;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Support\Facades\Hash;
 
 class AuthService extends BaseApiService
 {
-    public function login(array $credentials)
+    use ApiResponse;
+    public function login(array $credentials, $request): LoginResource|string
     {
-        return $this->post('api/v1/fc/login', $credentials);
+        $user = User::where('email', $request->input('email'))->first();
+
+        if (!$user || !Hash::check($request->input('password'), $user->password)) {
+            return ('Invalid credentials.');
+        }
+
+        $user->tokens()->delete();
+
+        $token = $user->createToken('login-token', ['*'], now()->addHours(48));
+
+        $user->load('organization');
+
+       return new LoginResource([
+                'user' => $user,
+                'token' => $token->plainTextToken,
+            ]);
+
     }
 
     public function register(array $data)

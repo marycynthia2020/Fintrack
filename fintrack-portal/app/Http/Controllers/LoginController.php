@@ -23,7 +23,9 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        $response = $this->authService->login($credentials);
+        $response = $this->authService->login($credentials, $request);
+
+        dd($response);
 
         if (! $response->successful()) {
 

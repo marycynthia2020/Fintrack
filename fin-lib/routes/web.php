@@ -1,11 +1,12 @@
 <?php
 
+use FinTrack\FinLib\Controllers\Web\IncomeController;
 use Illuminate\Support\Facades\Route;
 
 // protected routes
 Route::middleware('auth')
 ->group(function () {
-    // pls note: you can add protected routes here
+    Route::get('incomes', [IncomeController::class, 'index'])->name('income.index');
 });
 
 // public routes
