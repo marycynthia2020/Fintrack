@@ -8,7 +8,7 @@ class IncomeController extends Controller
 {
     public function index()
     {
-        $incomes = Income::paginate(10);
+        $incomes = Income::all();
         return view('fin-lib::income.index',['incomes' => $incomes]);
     }
 }
