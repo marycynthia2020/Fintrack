@@ -9,6 +9,7 @@ class AuthService extends BaseApiService
     public function login(array $credentials)
     {
         return $this->post('api/v1/fc/login', $credentials);
+                    
     }
 
     public function register(array $data)
