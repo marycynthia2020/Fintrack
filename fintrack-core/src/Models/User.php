@@ -13,10 +13,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use FinTrack\Core\Traits\HasOrganization;
 use FinTrack\Core\Traits\HasAttachments;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 #[Fillable(['name', 'email', 'password', 'organization_id'])]
 #[Hidden(['password', 'remember_token'])]
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable, HasOrganization, SoftDeletes, HasUuids, HasApiTokens, HasAttachments;   

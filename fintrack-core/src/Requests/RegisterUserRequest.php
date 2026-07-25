@@ -31,6 +31,7 @@ class RegisterUserRequest extends FormRequest
             'password' => [
                 'required',
                 'string',
+                'confirmed',
                 $passwordValidity,
             ],
             'organization' => ['nullable', 'string', 'max:255'],
