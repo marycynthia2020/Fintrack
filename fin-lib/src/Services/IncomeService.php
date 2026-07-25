@@ -45,7 +45,7 @@ class IncomeService
     {
         $query = Income::query();
 
-        if (isset($orgId)) {
+        if (isset($filters['organization_id'])) {
             $query->ofOrganization($filters['organization_id']);
         }
 
