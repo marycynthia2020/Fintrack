@@ -1,17 +1,6 @@
 <x-app-layout>
-    {{-- <div class="ft-page">
-        <div class="ft-page-head"><div><h1 class="ft-page-title">Dashboard</h1><p class="ft-page-subtitle">Welcome back, {{ Auth::user()->name ?? 'John' }} 👋</p></div><button class="ft-button" type="button">This Month　⌄</button></div>
-        <div class="ft-stat-grid">
-            <div class="ft-card ft-stat"><div class="ft-stat-top"><span>Total Income</span><span class="ft-stat-icon" style="color:#039855;background:#ecfdf3">↗</span></div><div class="ft-stat-value">₦500,000</div><div class="ft-stat-note">↑ 20% <span style="color:#98a2b3;font-weight:500">from last month</span></div></div>
-            <div class="ft-card ft-stat"><div class="ft-stat-top"><span>Total Expenses</span><span class="ft-stat-icon" style="color:#f04438;background:#fef3f2">↘</span></div><div class="ft-stat-value">₦200,000</div><div class="ft-stat-note" style="color:#f04438">↓ 8% <span style="color:#98a2b3;font-weight:500">from last month</span></div></div>
-            <div class="ft-card ft-stat"><div class="ft-stat-top"><span>Balance</span><span class="ft-stat-icon" style="color:#315af5;background:#eff3ff">▣</span></div><div class="ft-stat-value">₦300,000</div><div class="ft-stat-note">↑ 12% <span style="color:#98a2b3;font-weight:500">from last month</span></div></div>
-            <div class="ft-card ft-stat"><div class="ft-stat-top"><span>Transactions</span><span class="ft-stat-icon" style="color:#9e77ed;background:#f4f3ff">▤</span></div><div class="ft-stat-value">25</div><div class="ft-stat-note">↑ 5 <span style="color:#98a2b3;font-weight:500">from last month</span></div></div>
-        </div>
-        <div class="ft-layout-grid">
-            <section class="ft-card ft-panel"><div class="ft-panel-head"><h2 class="ft-panel-title">Recent Transactions</h2><a class="ft-link" href="#">View all</a></div><table class="ft-table"><thead><tr><th>Description</th><th>Type</th><th>Amount</th><th>Date</th><th>Created by</th></tr></thead><tbody>
-                <tr><td>Salary Payment</td><td><span class="ft-badge income">Income</span></td><td>₦150,000</td><td>Jun 23, 2026</td><td>John Doe</td></tr><tr><td>Freelance Work</td><td><span class="ft-badge income">Income</span></td><td>₦50,000</td><td>Jun 21, 2026</td><td>Mary Jane</td></tr><tr><td>Transport</td><td><span class="ft-badge expense">Expense</span></td><td>₦10,000</td><td>Jun 23, 2026</td><td>John Doe</td></tr><tr><td>Internet Subscription</td><td><span class="ft-badge expense">Expense</span></td><td>₦5,000</td><td>Jun 22, 2026</td><td>Mary Jane</td></tr><tr><td>Office Supplies</td><td><span class="ft-badge expense">Expense</span></td><td>₦25,000</td><td>Jun 20, 2026</td><td>David Smith</td></tr>
-            </tbody></table></section>
-            <aside class="ft-card ft-panel"><div class="ft-panel-head"><h2 class="ft-panel-title">Quick Actions</h2></div><div class="ft-actions"><button class="ft-action income" type="button">＋ Add Income</button><button class="ft-action expense" type="button">＋ Add Expense</button></div><div style="border-top:1px solid #f2f4f7;margin:22px -20px 0;padding:20px 20px 0"><h2 class="ft-panel-title">Spending Overview</h2><div class="ft-progress"><div class="ft-progress-row"><span>Transport</span><strong>40%</strong></div><div class="ft-progress-bar"><div class="ft-progress-fill" style="width:40%;background:#315af5"></div></div><div class="ft-progress-row"><span>Office</span><strong>25%</strong></div><div class="ft-progress-bar"><div class="ft-progress-fill" style="width:25%;background:#12b76a"></div></div><div class="ft-progress-row"><span>Utilities</span><strong>20%</strong></div><div class="ft-progress-bar"><div class="ft-progress-fill" style="width:20%;background:#f79009"></div></div><div class="ft-progress-row"><span>Others</span><strong>15%</strong></div><div class="ft-progress-bar"><div class="ft-progress-fill" style="width:15%;background:#ee46bc"></div></div></div></div></aside>
-        </div>
-    </div> --}}
+<form action="{{route('logout')}}" method="post">
+    <button>logout</button>
+@csrf
+</form>
 </x-app-layout>

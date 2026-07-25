@@ -1,6 +1,6 @@
 <?php
 
-namespace FinTrack\Core\Controllers\Auth;
+namespace FinTrack\Core\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use FinTrack\Core\Requests\LoginRequest;

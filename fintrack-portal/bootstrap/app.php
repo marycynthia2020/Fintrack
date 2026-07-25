@@ -14,11 +14,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo('/login');
-         $middleware->alias([
-        'portal.auth' => \App\Http\Middleware\PortalAuthenticate::class,
-        'portal.guest' => \App\Http\Middleware\PortalGuest::class,
-        
-    ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

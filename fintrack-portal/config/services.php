@@ -34,8 +34,5 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
-    'fintrack' => [
-        'api_url' => env('FINTRACK_API_URL'),
-    ],
 
 ];

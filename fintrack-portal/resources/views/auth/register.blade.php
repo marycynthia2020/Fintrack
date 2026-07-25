@@ -23,7 +23,7 @@
          <!-- Business Name -->
         <div class="mt-3">
             <label class="ft-label" for="organization">Business name</label>
-            <input id="organization" class="ft-input" type="password" name="organization" required autocomplete="organization" placeholder="John Enterprise" />
+            <input id="organization" class="ft-input" type="text" name="organization" value="{{ old('organization') }}" autocomplete="organization" placeholder="John Enterprise" />
 
             <x-input-error :messages="$errors->get('organization')" class="mt-2" />
         </div>

@@ -1,7 +1,7 @@
 <?php
 
-use FinTrack\Core\Controllers\Auth\SessionController;
-use FinTrack\Core\Controllers\Auth\RegisterController;
+use FinTrack\Core\Controllers\Api\Auth\SessionController;
+use FinTrack\Core\Controllers\Api\Auth\RegisterController;
 use FinTrack\Core\Controllers\API\UserApiController;
 use Illuminate\Support\Facades\Route;
 
