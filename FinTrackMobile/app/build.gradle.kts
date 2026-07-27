@@ -3,13 +3,19 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-android {
-    namespace = "ng.com.codizium.fintrack"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
+configurations.all {
+    resolutionStrategy.eachDependency {
+        if (requested.group == "androidx.compose.ui") {
+            when (requested.module.name) {
+                "ui-android", "ui" -> useVersion("1.10.4")
+            }
         }
     }
+}
+
+android {
+    namespace = "ng.com.codizium.fintrack"
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "ng.com.codizium.fintrack"
@@ -46,6 +52,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
