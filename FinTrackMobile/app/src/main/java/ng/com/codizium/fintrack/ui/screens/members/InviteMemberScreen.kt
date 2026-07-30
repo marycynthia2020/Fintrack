@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import ng.com.codizium.fintrack.ui.theme.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InviteMemberScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
