@@ -72,6 +72,24 @@
     .ft-auth-card .ft-button { width:100%; margin-top:8px; } .ft-auth-row { display:flex; align-items:center; justify-content:space-between; margin:16px 0; }
     .ft-auth-row label { color:#667085; font-size:11px; } .ft-auth-row a, .ft-auth-footer a { color:#2451e6; font-weight:700; }
     .ft-auth-footer { text-align:center; color:#667085; font-size:14px; margin-top:20px; }
+    
+    
+    .ft-button.success { background:#039855; box-shadow:0 5px 12px rgba(3,152,85,.15); }
+    .ft-button.success:hover { background:#027a43; }
+    .ft-button.danger { background:#d92d20; box-shadow:0 5px 12px rgba(217,45,32,.15); }
+    .ft-button.danger:hover { background:#b42318; }
+    .ft-button.secondary { background:#f2f4f7; color:#344054; box-shadow:none; border:1px solid #dfe4ec; }
+    .ft-button.secondary:hover { background:#eaecf0; }
+    
+    .ft-filter-bar { display:flex; align-items:center; gap:10px; }
+    .ft-filter-select { background:#fff; border:1px solid #dfe4ec; border-radius:7px; padding:8px 12px; font-size:12px; font-weight:600; color:#344054; outline:none; cursor:pointer; }
+    .ft-filter-button { display:inline-flex; align-items:center; gap:6px; background:#fff; border:1px solid #dfe4ec; border-radius:7px; padding:8px 12px; font-size:12px; font-weight:600; color:#344054; cursor:pointer; }
+    
+    .ft-detail-item { display:flex; justify-content:space-between; padding:14px 0; border-bottom:1px solid #f2f4f7; font-size:12px; }
+    .ft-detail-item:last-child { border-bottom:0; }
+    .ft-detail-label { color:#667085; font-weight:500; }
+    .ft-detail-value { color:#101828; font-weight:600; text-align:right; }
+
     @media (max-width: 900px) { .ft-sidebar { width:74px; } .ft-brand { padding:0; justify-content:center; } .ft-brand-name,.ft-nav-label,.ft-nav-link span:not(.ft-nav-icon),.ft-user-copy { display:none; } .ft-nav-link { justify-content:center; } .ft-user { justify-content:center; padding:16px 8px; } .ft-main { margin-left:74px; } .ft-page { padding:24px 18px; } }
     @media (max-width: 680px) { .ft-topbar { height:62px; padding:0 16px; } .ft-stat-grid,.ft-layout-grid { grid-template-columns:1fr; } .ft-page-head { align-items:flex-start; gap:14px; } .ft-table { min-width:600px; } .ft-card:has(.ft-table) { overflow:auto; } .ft-auth-card { padding:25px 20px; } }
 }
